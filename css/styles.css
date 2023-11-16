@@ -1,5 +1,5 @@
 body {
-/*    display: flex;*/
+    /*    display: flex;*/
     justify-content: center;
     align-items: center;
     height: 100vh;
@@ -9,29 +9,32 @@ body {
 
 .card-table {
     display: flex;
-/*    flex-wrap: wrap;*/
+    /*    flex-wrap: wrap;*/
     justify-content: center;
-/*    justify-content: space-between;*/
+    /*    justify-content: space-between;*/
 }
 
 .card-group {
-/*    width: 22%;  調整每個區域的寬度，以確保並排顯示 */
-/*    border: 1px solid #ccc;*/
-/*
+    /*    width: 22%;  調整每個區域的寬度，以確保並排顯示 */
+    /*    border: 1px solid #ccc;*/
+    /*
     padding: 10px;
     margin: 0 5rem;
 */
-/*    box-sizing: border-box;*/
-/*    position: relative;*/
-/*    min-height: 300px;  確保每個區域高度一致，以免排列錯位 */
-    width: 15%; /* 設定每個牌組的寬度(左右留白20%) */
-    text-align: center; /* 文字置中 */
-/*    border: 1px solid #000;  邊框樣式，可自訂 */
-    margin: 5px; /* 外邊距，可自訂 */
+    /*    box-sizing: border-box;*/
+    /*    position: relative;*/
+    /*    min-height: 300px;  確保每個區域高度一致，以免排列錯位 */
+    width: 15%;
+    /* 設定每個牌組的寬度(左右留白20%) */
+    text-align: center;
+    /* 文字置中 */
+    /*    border: 1px solid #000;  邊框樣式，可自訂 */
+    margin: 5px;
+    /* 外邊距，可自訂 */
 }
 
 .card-group .card:not(:first-child) {
-/*    margin-top: -7rem;*/
+    /*    margin-top: -7rem;*/
     margin-top: -150px;
 }
 
@@ -39,8 +42,15 @@ body {
     background-color: lightgoldenrodyellow;
 }
 
+#deck-info {
+    position: fixed;
+    left: 5%;
+    top: 50%;
+    text-align: center;
+}
+
 #deal-button {
-  position: fixed;
-  left: 20px; 
-  bottom: 20px;
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
 }

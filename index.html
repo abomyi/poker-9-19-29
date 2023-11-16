@@ -12,33 +12,12 @@
         <h1>歡迎來到撲克牌遊戲 - 9 / 19 / 29</h1>
     </header>
     <main>
-        <!-- 在這裡放置遊戲內容，例如撲克牌的呈現和遊戲互動 -->
-<!--  預設的第一張牌
-        <div class="card">
-            <div class="card__top">
-                <span class="card__value">A</span>
-                <span class="card__suit">♥</span>
-            </div>
-            <div class="card__center">
-                <span class="card__suit">♥</span>
-            </div>
-            <div class="card__bottom">
-                <span class="card__value">A</span>
-                <span class="card__suit">♥</span>
-            </div>
-        </div>
--->
-        <div class="card-table">
-            <div id="card-group1" class="card-group"></div>
-            <div id="card-group2" class="card-group"></div>
-            <div id="card-group3" class="card-group"></div>
-            <div id="card-group4" class="card-group"></div>
-        </div>
-        
+        <div class="card-table"></div>
     </main>
+    <div id="deck-info">剩餘牌數: <br><span id="deck-count"></span></div>
     <button id="deal-button">發牌</button>
     <footer>
-        <!-- <p>&copy; 2023 撲克牌遊戲公司</p> -->
+        <!-- <p>&copy; 2023 Abomyi.</p> -->
     </footer>
 
     <script src="js/poker-min.js"></script>

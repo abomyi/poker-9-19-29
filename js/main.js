@@ -75,6 +75,12 @@ function shuffleDeck() {
   }
 }
 
+// 刷新介面提示
+function updateDeckCount() {
+  // TODO: 改成listener的形式，只要deck變動就更新;而不是在每個變動的地方呼叫此function
+  document.querySelector('#deck-count').innerHTML = deck.length;
+}
+
 
 const classGroup = 'card-group';
 const cardTable = document.querySelector('.card-table');
@@ -138,12 +144,15 @@ dealButton.addEventListener('click', function () {
   }
   // 發牌(從牌組中取出第一張牌)
   const dealtCard = deck.shift();
+  updateDeckCount();
 
   // 創建一個新的卡片元素，並設置內容
   const cardElement = createCardElement(dealtCard.value, dealtCard.suit);
 
   // 添加到牌桌上
   cardGroups.next().appendChild(cardElement);
+
+  // TODO: 當群組內的牌超過N張後，只顯示前三張、後三張牌
 
   // 將背景顏色改為白色，觸發漸變效果
   //    setTimeout(function () {
@@ -156,6 +165,7 @@ const classSelected = 'card-selected';
 
 function clickCard(card) {
   //    console.dir(card);
+  // TODO: 播放音效
 
   let cardSelected = document.querySelectorAll(`.${classSelected}`);
 
@@ -205,6 +215,7 @@ function verifySelectedCards(cards) {
   if ([9, 19, 29].includes(sum)) {
     // 總和為 9、19 或 29 時的操作
     discard(cards);
+    // TODO: 播放音效
     return true;
   }
   return false;
@@ -228,6 +239,7 @@ function discard(cards) {
       value: parseInt(cardNumber, 10)
     });
   });
+  updateDeckCount();
 
   if (uiGroup.querySelectorAll('div.card').length === 0) {
     // 當這一行沒有任何牌時，移除這一列，並且後續發牌會跳過此行
@@ -303,6 +315,7 @@ function startNewGame() {
 startNewGame();
 
 function win() {
+  // TODO: 勝利音效
   if (confirm('恭喜! 你成功了!\n 要進行驗證嗎?')) {
     // TODO: 自動進行遊戲N次
   } else {
@@ -314,6 +327,7 @@ function win() {
 }
 
 function lose() {
+  // TODO: 音效
   if (confirm('牌組已經發完了！GG! 你輸了!\n 要重來嗎?')) {
     console.log('restart');
     startNewGame();
