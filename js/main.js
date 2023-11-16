@@ -241,8 +241,12 @@ function discard(cards) {
   });
   updateDeckCount();
 
-  if (uiGroup.querySelectorAll('div.card').length === 0) {
-    // 當這一行沒有任何牌時，移除這一列，並且後續發牌會跳過此行
+  if (verifyDeck()) {
+    return win();
+  }
+
+  if (uiGroup.querySelectorAll('div.card').length === 0 && document.querySelectorAll(`.${classGroup}`).length > 1) {
+    // 當這一行沒有任何牌時，移除此牌，並且後續發牌會跳過此行
     uiGroup.remove();
     cardGroups.remove(uiGroup);
   }
@@ -261,6 +265,11 @@ function verifyDeck() {
       return false;
     }
     checkIndex = 1;
+  } else if (remainingCards.length === 1) {
+    // 牌桌上有牌，此時這張牌必定要是3
+    if (remainingCards[0].getAttribute('data-card-number') != '3') {
+      return false;
+    }
   }
 
   // 驗算剩餘的39張牌，是否每三張的加總均為9/19/29
