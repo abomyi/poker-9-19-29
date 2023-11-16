@@ -1,0 +1,45 @@
+.card {
+    width: 150px;
+    height: 200px;
+    background-color: white;
+    border: 1px solid #000;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+/*    margin: 10px;*/
+    position: relative;
+    user-select: none;
+/*    background-color: lightblue;*/
+/*    transition: background-color 1s;*/
+}
+
+.card__top,
+.card__bottom {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    align-items: center;
+    font-size: 2rem;
+}
+
+.card__bottom {
+    transform: rotate(180deg);
+/*    flex-direction: column-reverse;  使數字上下顛倒 */
+}
+
+.card__center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 40px;
+    flex-grow: 1;
+}
+
+.card__suit {
+    font-size: 24px;
+    padding: 0 5px;
+}
+
+.heart, .diamond {
+  color: red;
+}
