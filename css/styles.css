@@ -38,6 +38,10 @@ body {
     margin-top: -150px;
 }
 
+.card.minimize {
+    margin-top: -195px !important;
+}
+
 .card.card-selected {
     background-color: lightgoldenrodyellow;
 }

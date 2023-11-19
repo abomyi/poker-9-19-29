@@ -150,15 +150,38 @@ dealButton.addEventListener('click', function () {
   const cardElement = createCardElement(dealtCard.value, dealtCard.suit);
 
   // 添加到牌桌上
-  cardGroups.next().appendChild(cardElement);
+  const currGroup = cardGroups.next();
+  currGroup.appendChild(cardElement);
 
-  // TODO: 當群組內的牌超過N張後，只顯示前三張、後三張牌
+  // 如果排列太長，縮短顯示
+  minimizeCards(currGroup);
 
   // 將背景顏色改為白色，觸發漸變效果
   //    setTimeout(function () {
   //        cardElement.style.backgroundColor = 'white';
   //    }, 1);
 });
+
+function minimizeCards(currGroup) {
+  const currCards = currGroup.querySelectorAll('.card');
+  // 如果大於9張
+  if(currCards.length > 9) {
+    // 前 3 張和後 3 張保持顯示
+    for(let i = 0; i < 4; i++) {
+      currCards[i].classList.remove('minimize');
+      currCards[currCards.length-1-i].classList.remove('minimize');
+    }
+
+    // 其他的隱藏
+    for(let i = 4; i < currCards.length - 2; i++) {
+      currCards[i].classList.add('minimize');
+    }
+  } else {
+    currCards.forEach(function(card){
+      card.classList.remove('minimize');
+    });
+  }
+}
 
 
 const classSelected = 'card-selected';
@@ -196,7 +219,10 @@ function clickCard(card) {
   cardSelected = document.querySelectorAll(`.${classSelected}`);
   if (cardSelected.length == 3) {
     const isValid = verifySelectedCards(Array.from(cardSelected));
-    if (!isValid) {
+    if (isValid) {
+      discard(Array.from(cardSelected));
+      // TODO: 播放音效
+    } else {
       card.classList.toggle(classSelected);
     }
   }
@@ -213,9 +239,7 @@ function verifySelectedCards(cards) {
   }, 0);
 
   if ([9, 19, 29].includes(sum)) {
-    // 總和為 9、19 或 29 時的操作
-    discard(cards);
-    // TODO: 播放音效
+    // 總和為 9、19 或 29
     return true;
   }
   return false;
@@ -249,6 +273,8 @@ function discard(cards) {
     // 當這一行沒有任何牌時，移除此牌，並且後續發牌會跳過此行
     uiGroup.remove();
     cardGroups.remove(uiGroup);
+  } else {
+    minimizeCards(uiGroup);
   }
 }
 
