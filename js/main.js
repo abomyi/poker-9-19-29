@@ -369,3 +369,8 @@ function lose() {
   }
 }
 
+document.addEventListener('keyup', event => {
+  if (event.key === 'Enter') {
+    dealButton.click();
+  }
+});
